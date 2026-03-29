@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   },
   slctcoreCretaccContinueBtn: {
     width: 260,
-    height: 72,
+    height: 71,
     borderRadius: 44,
     backgroundColor: '#3AFFA0',
     justifyContent: 'center',

@@ -79,7 +79,7 @@ android {
 
     namespace "com.rockbassselect"
     defaultConfig {
-        applicationId "com.rockbassselect"
+        applicationId "com.bigrokkselect"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

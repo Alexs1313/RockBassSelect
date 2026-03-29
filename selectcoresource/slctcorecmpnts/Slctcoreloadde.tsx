@@ -10,85 +10,79 @@ import {Animated} from 'react-native';
 //   return;
 // });
 
-export const slctcorehtmlLoader = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-  />
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      overflow: hidden;
-    }
+export const slctcorehtmlLoader = `   <!DOCTYPE html>
+    <html>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <style>
+          html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            overflow: hidden;
+          }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+          body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
 
-    .loader {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 8px;
-    }
+          .loading-wave {
+            width: 300px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+          }
 
-    .loader .dot {
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      border: 2px solid #212121;
-      background: #16b0c1;
-      animation: jump 0.8s ease-in-out infinite alternate;
-      box-sizing: border-box;
-    }
+          .loading-bar {
+            width: 20px;
+            height: 10px;
+            margin: 0 5px;
+            background-color: #3498db;
+            border-radius: 5px;
+            animation: loading-wave-animation 1s ease-in-out infinite;
+          }
 
-    @keyframes jump {
-      100% {
-        background: #661e92;
-        transform: translateY(-48px) scale(1.9);
-      }
-    }
+          .loading-bar:nth-child(2) {
+            animation-delay: 0.1s;
+          }
 
-    .loader .dot:nth-child(1) {
-      animation-delay: 0.1s;
-    }
+          .loading-bar:nth-child(3) {
+            animation-delay: 0.2s;
+          }
 
-    .loader .dot:nth-child(2) {
-      animation-delay: 0.2s;
-    }
+          .loading-bar:nth-child(4) {
+            animation-delay: 0.3s;
+          }
 
-    .loader .dot:nth-child(3) {
-      animation-delay: 0.3s;
-    }
+          @keyframes loading-wave-animation {
+            0% {
+              height: 10px;
+            }
 
-    .loader .dot:nth-child(4) {
-      animation-delay: 0.4s;
-    }
+            50% {
+              height: 50px;
+            }
 
-    .loader .dot:nth-child(5) {
-      animation-delay: 0.5s;
-    }
-  </style>
-</head>
-<body>
-  <div class="loader">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-  </div>
-</body>
-</html>`;
+            100% {
+              height: 10px;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="loading-wave">
+          <div class="loading-bar"></div>
+          <div class="loading-bar"></div>
+          <div class="loading-bar"></div>
+          <div class="loading-bar"></div>
+        </div>
+      </body>
+    </html>`;
 
 const Slctcoreloadde = () => {
   const navigation = useNavigation();

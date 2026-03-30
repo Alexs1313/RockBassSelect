@@ -21,7 +21,6 @@ const SLCTCORE_STORAGE_KEYS = {
 const SLCTCORE_MOTIVATION_TEXTS: string[] = [
   'You are already moving.',
   'A small step is a step.',
-  'That is enough.',
   'Continue without pressure.',
   'You choose your own pace.',
   'Don’t dwell on doubts.',

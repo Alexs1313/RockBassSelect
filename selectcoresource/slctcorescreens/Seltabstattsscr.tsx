@@ -166,13 +166,13 @@ const Seltabstattsscr = () => {
 
   const onSlctcoreShareStats = async () => {
     const msg = `Your statistics:
-time in the app: ${slctcoreComputed.timeMinutes} m
-date of registration: ${slctcoreComputed.registrationDate}
-moments: ${slctcoreComputed.moments}
-active days: ${slctcoreComputed.activeDays} days
-car: ${slctcoreComputed.counts.car}
-flamingo: ${slctcoreComputed.counts.flamingo}
-fishing: ${slctcoreComputed.counts.fishing}`;
+Time in the app: ${slctcoreComputed.timeMinutes} m
+Date of registration: ${slctcoreComputed.registrationDate}
+Moments: ${slctcoreComputed.moments}
+Active days: ${slctcoreComputed.activeDays} days
+Car: ${slctcoreComputed.counts.car}
+Flamingo: ${slctcoreComputed.counts.flamingo}
+Fishing: ${slctcoreComputed.counts.fishing}`;
     await Share.share({message: msg});
   };
 

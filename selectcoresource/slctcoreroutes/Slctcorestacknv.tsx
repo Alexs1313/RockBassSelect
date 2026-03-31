@@ -2,6 +2,7 @@
 
 import {createStackNavigator} from '@react-navigation/stack';
 import Seltabroutes from '../../Seltabroutes';
+
 import Seltabonbscrn from '../slctcorescreens/Seltabonbscrn';
 import Slctcoreloadde from '../slctcorecmpnts/Slctcoreloadde';
 import Seltabcretacc from '../slctcorescreens/Seltabcretacc';

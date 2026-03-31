@@ -1,8 +1,11 @@
+import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {useFocusEffect} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import {Image, Pressable, Share, StyleSheet, Text, View} from 'react-native';
-import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
+import {Image, Share, StyleSheet, Text, View} from 'react-native';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
 
 const SLCTCORE_STORAGE_KEYS = {
   moments: 'slctcore.moments',
@@ -163,7 +166,7 @@ const Seltabmmntsscr = () => {
                   </Text>
                 </View>
 
-                <Pressable
+                <Slctcorepressbtn
                   style={[
                     styles.slctcoreMmntsShareBtn,
                     slctcoreHasMoments && styles.slctcoreMmntsShareBtnSaved,
@@ -177,7 +180,7 @@ const Seltabmmntsscr = () => {
                     ]}>
                     Share
                   </Text>
-                </Pressable>
+                </Slctcorepressbtn>
               </View>
             );
           })}

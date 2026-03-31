@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {launchImageLibrary, type Asset} from 'react-native-image-picker';
 import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
 
 const SLCTCORE_STORAGE_KEYS = {
   nickname: 'slctcore.nickname',
@@ -161,11 +162,12 @@ const Seltabcretacc = () => {
             styles.slctcoreCretaccContinueWrap,
             slctcoreCretaccContinueAnimStyle,
           ]}>
-          <Pressable
+          <Slctcorepressbtn
+            slctcoreContainerStyle={styles.slctcoreCretaccContinueBtnWrap}
             style={styles.slctcoreCretaccContinueBtn}
             onPress={onSlctcoreContinue}>
             <Text style={styles.slctcoreCretaccContinueText}>Continue</Text>
-          </Pressable>
+          </Slctcorepressbtn>
         </Animated.View>
       </View>
     </Slctcorelayoutt>
@@ -268,6 +270,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#3AFFA0',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  slctcoreCretaccContinueBtnWrap: {
+    width: 260,
   },
   slctcoreCretaccContinueWrap: {
     width: 260,

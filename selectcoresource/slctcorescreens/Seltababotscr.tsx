@@ -1,7 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
 
 const Seltababotscr = () => {
   const navigation = useNavigation<any>();
@@ -10,11 +11,11 @@ const Seltababotscr = () => {
     <Slctcorelayoutt>
       <View style={styles.slctcoreAbotContainer}>
         <View style={styles.slctcoreAbotHeader}>
-          <Pressable
+          <Slctcorepressbtn
             style={styles.slctcoreAbotBackBtn}
             onPress={() => navigation.goBack()}>
             <Image source={require('../../elmnts/i/slctcorsybackar.png')} />
-          </Pressable>
+          </Slctcorepressbtn>
           <Text style={styles.slctcoreAbotTitle}>ABOUT THE APP</Text>
         </View>
 

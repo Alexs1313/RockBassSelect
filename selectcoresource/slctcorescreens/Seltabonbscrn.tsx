@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
   ImageBackground,
   Image,
-  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
-import {useNavigation} from '@react-navigation/native';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
 
 const slctonboardindata = [
   {
@@ -43,13 +43,47 @@ No publicity. No pressure.`,
 
 const Seltabonbscrn = () => {
   const [slctcoreIndex, setSlctcoreIndex] = useState(0);
-  const navigation = useNavigation();
+  const [slctcoreTypedTitle, setSlctcoreTypedTitle] = useState('');
+  const navigation = useNavigation<any>();
+  const slctcoreTypingTimerRef = useRef<ReturnType<typeof setInterval> | null>(
+    null,
+  );
 
   const onSlctcoreIndexChange = (index: number) => {
     slctcoreIndex === 3
       ? navigation.replace('Seltabcretacc')
       : setSlctcoreIndex(index + 1);
   };
+
+  useEffect(() => {
+    const slctcoreFullTitle = slctonboardindata[slctcoreIndex].title;
+    setSlctcoreTypedTitle('');
+
+    if (slctcoreTypingTimerRef.current) {
+      clearInterval(slctcoreTypingTimerRef.current);
+      slctcoreTypingTimerRef.current = null;
+    }
+
+    let slctcoreI = 0;
+    slctcoreTypingTimerRef.current = setInterval(() => {
+      slctcoreI += 1;
+      setSlctcoreTypedTitle(slctcoreFullTitle.slice(0, slctcoreI));
+      if (slctcoreI >= slctcoreFullTitle.length) {
+        if (slctcoreTypingTimerRef.current) {
+          clearInterval(slctcoreTypingTimerRef.current);
+          slctcoreTypingTimerRef.current = null;
+        }
+      }
+    }, 18);
+
+    return () => {
+      if (slctcoreTypingTimerRef.current) {
+        clearInterval(slctcoreTypingTimerRef.current);
+        slctcoreTypingTimerRef.current = null;
+      }
+    };
+  }, [slctcoreIndex]);
+
   return (
     <Slctcorelayoutt>
       <View style={styles.slctcoreonbrcontainer}>
@@ -57,28 +91,20 @@ const Seltabonbscrn = () => {
 
         <ImageBackground
           source={require('../../elmnts/i/slctcoreboard.png')}
-          style={{
-            width: 353,
-            height: 333,
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: 68,
-            paddingVertical: 60,
-            paddingHorizontal: 30,
-          }}
+          style={styles.slctcoreOnbBoard}
           resizeMode="stretch">
           <Text style={styles.slctcoreonbtext}>
-            {slctonboardindata[slctcoreIndex].title}
+            {slctcoreTypedTitle}
           </Text>
 
-          <TouchableOpacity
+          <Slctcorepressbtn
             style={styles.slctcorebtn}
             onPress={() => onSlctcoreIndexChange(slctcoreIndex)}
-            activeOpacity={0.8}>
+            slctcoreContainerStyle={styles.slctcorebtnWrap}>
             <Text style={styles.slctcorebtntext}>
               {slctonboardindata[slctcoreIndex].button}
             </Text>
-          </TouchableOpacity>
+          </Slctcorepressbtn>
         </ImageBackground>
       </View>
     </Slctcorelayoutt>
@@ -94,6 +120,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 60,
   },
+  slctcoreOnbBoard: {
+    width: 353,
+    height: 333,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 68,
+    paddingVertical: 60,
+    paddingHorizontal: 30,
+  },
   slctcorebtn: {
     backgroundColor: '#3AFFA0',
     padding: 10,
@@ -102,6 +137,9 @@ const styles = StyleSheet.create({
     height: 69,
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  slctcorebtnWrap: {
     alignSelf: 'center',
   },
   slctcorebtntext: {

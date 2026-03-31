@@ -1,18 +1,20 @@
+import Toast from 'react-native-toast-message';
+import {useSlctcoreStore} from '../slctcorestrage/slctcorescontext';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+
 import React, {useEffect, useMemo, useState} from 'react';
 import {
   Alert,
   Image,
-  Pressable,
   Share,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
-import Toast from 'react-native-toast-message';
-import {useSlctcoreStore} from '../slctcorestrage/slctcorescontext';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
 
 const SLCTCORE_STORAGE_KEYS = {
   savedMotivation: 'slctcore.savedMotivation',
@@ -131,11 +133,11 @@ const Seltabmotvtnscr = () => {
     <Slctcorelayoutt>
       <View style={styles.slctcoreMotvtnContainer}>
         <View style={styles.slctcoreMotvtnHeader}>
-          <Pressable
+          <Slctcorepressbtn
             style={styles.slctcoreMotvtnBackBtn}
             onPress={() => navigation.goBack()}>
             <Image source={require('../../elmnts/i/slctcorsybackar.png')} />
-          </Pressable>
+          </Slctcorepressbtn>
           <Text style={styles.slctcoreMotvtnTitle}>DAILY MOTIVATION</Text>
         </View>
 
@@ -154,7 +156,7 @@ const Seltabmotvtnscr = () => {
                     </Text>
                   </View>
                   <View style={styles.slctcoreMotvtnActions}>
-                    <Pressable
+                    <Slctcorepressbtn
                       hitSlop={5}
                       onPress={() => onSlctcoreToggleSave(slctcoreText)}>
                       <Image
@@ -164,14 +166,14 @@ const Seltabmotvtnscr = () => {
                             : require('../../elmnts/i/slctcorssave.png')
                         }
                       />
-                    </Pressable>
-                    <Pressable
+                    </Slctcorepressbtn>
+                    <Slctcorepressbtn
                       hitSlop={4}
                       onPress={() => onSlctcoreShare(slctcoreText)}>
                       <Image
                         source={require('../../elmnts/i/slctcorshrr.png')}
                       />
-                    </Pressable>
+                    </Slctcorepressbtn>
                   </View>
                 </View>
               </View>

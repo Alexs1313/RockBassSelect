@@ -1,18 +1,18 @@
+import Toast from 'react-native-toast-message';
+import {useSlctcoreStore} from '../slctcorestrage/slctcorescontext';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useCallback, useState} from 'react';
 import {
   Image,
   ImageBackground,
-  Pressable,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
-import Toast from 'react-native-toast-message';
-import {useSlctcoreStore} from '../slctcorestrage/slctcorescontext';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
 
 const SLCTCORE_STORAGE_KEYS = {
   nickname: 'slctcore.nickname',
@@ -153,7 +153,7 @@ const Seltabproflscr = () => {
 
           <View style={styles.slctcoreProflRow}>
             <Text style={styles.slctcoreProflRowLabel}>Notifications</Text>
-            <TouchableOpacity
+            <Slctcorepressbtn
               onPress={() => toggleNotifications(!slctcoreNotificationsEnabled)}
               style={[
                 styles.slctcoreProflSwitchWrap,
@@ -176,7 +176,7 @@ const Seltabproflscr = () => {
                     styles.slctcoreProflSwitchStateDotActive,
                 ]}
               />
-            </TouchableOpacity>
+            </Slctcorepressbtn>
           </View>
 
           {/* <View style={styles.slctcoreProflRow}>
@@ -194,7 +194,7 @@ const Seltabproflscr = () => {
             </View>
           </View> */}
 
-          <Pressable
+          <Slctcorepressbtn
             disabled={!slctcoreCanDeleteMoments}
             style={[
               styles.slctcoreProflActionBtn,
@@ -206,9 +206,9 @@ const Seltabproflscr = () => {
             <Text style={styles.slctcoreProflActionBtnText}>
               Delete all moments
             </Text>
-          </Pressable>
+          </Slctcorepressbtn>
 
-          <Pressable
+          <Slctcorepressbtn
             disabled={!slctcoreCanResetStats}
             style={[
               styles.slctcoreProflActionBtn,
@@ -219,7 +219,7 @@ const Seltabproflscr = () => {
             <Text style={styles.slctcoreProflActionBtnText}>
               Reset statistics
             </Text>
-          </Pressable>
+          </Slctcorepressbtn>
         </View>
       </View>
     </Slctcorelayoutt>

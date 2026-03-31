@@ -1,18 +1,20 @@
+import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
+import Toast from 'react-native-toast-message';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
+
+import {useSlctcoreStore} from '../slctcorestrage/slctcorescontext';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
 import {
   Alert,
   Image,
-  Pressable,
   Share,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
-import Toast from 'react-native-toast-message';
-import {useSlctcoreStore} from '../slctcorestrage/slctcorescontext';
 
 const SLCTCORE_STORAGE_KEYS = {
   savedMotivation: 'slctcore.savedMotivation',
@@ -111,7 +113,7 @@ const Seltabsavdscrn = () => {
                     <Text style={styles.slctcoreSavdCardText}>{card.text}</Text>
                   </View>
                   <View style={styles.slctcoreSavdCardActions}>
-                    <Pressable
+                    <Slctcorepressbtn
                       hitSlop={10}
                       onPress={() =>
                         isDemo ? undefined : onSlctcoreRemove(card.text)
@@ -119,14 +121,14 @@ const Seltabsavdscrn = () => {
                       <Image
                         source={require('../../elmnts/i/slctcorsysaved.png')}
                       />
-                    </Pressable>
-                    <Pressable
+                    </Slctcorepressbtn>
+                    <Slctcorepressbtn
                       hitSlop={10}
                       onPress={() => onSlctcoreShare(card.text)}>
                       <Image
                         source={require('../../elmnts/i/slctcorshrr.png')}
                       />
-                    </Pressable>
+                    </Slctcorepressbtn>
                   </View>
                 </View>
               </View>

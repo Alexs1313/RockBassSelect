@@ -12,25 +12,25 @@ export const SlctcoreProvider = ({children}: {children: React.ReactNode}) => {
     useState(false);
 
   useEffect(() => {
-    const mateLogLoadPrefs = async () => {
+    const slctcoreLoadPrefs = async () => {
       try {
-        const mateLogNotificationsValue = await AsyncStorage.getItem(
+        const slctcoreNotificationsValue = await AsyncStorage.getItem(
           'toggleSlctcoreNotifications',
         );
-        if (mateLogNotificationsValue !== null) {
+        if (slctcoreNotificationsValue !== null) {
           setSlctcoreNotificationsEnabled(
-            JSON.parse(mateLogNotificationsValue),
+            JSON.parse(slctcoreNotificationsValue),
           );
         }
 
-        const mateLogSoundValue = await AsyncStorage.getItem('toggleSound');
-        if (mateLogSoundValue !== null) {
-          setSlctcoreNotificationsEnabled(JSON.parse(mateLogSoundValue));
+        const slctcoreSoundValue = await AsyncStorage.getItem('toggleSound');
+        if (slctcoreSoundValue !== null) {
+          setSlctcoreNotificationsEnabled(JSON.parse(slctcoreSoundValue));
         }
       } catch {}
     };
 
-    mateLogLoadPrefs().catch(() => {});
+    slctcoreLoadPrefs().catch(() => {});
   }, []);
 
   const contextValues = {

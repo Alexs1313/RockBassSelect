@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {
-  ActivityIndicator,
   Alert,
   Image,
   ImageBackground,
@@ -15,7 +14,9 @@ import {
 } from 'react-native';
 import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
 import {launchImageLibrary, type Asset} from 'react-native-image-picker';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
 import WebView from 'react-native-webview';
+
 import {slctcorehtmlLoader} from '../slctcorecmpnts/Slctcoreloadde';
 
 const SLCTCORE_STORAGE_KEYS = {
@@ -193,7 +194,7 @@ const Seltabhomescrn = () => {
     }
     slctcoreTimerRef.current = setTimeout(() => {
       setSlctcorePhase('slctcoreResult');
-    }, 3000);
+    }, 3500);
   };
 
   const onSlctcoreToggleOption = (slctcoreOptionId: string) => {
@@ -327,7 +328,7 @@ const Seltabhomescrn = () => {
           await AsyncStorage.setItem(SLCTCORE_STORAGE_KEYS.statsReset, 'false');
           setSlctcoreSavedMomentId(slctcoreNewMoment.id);
         } catch {
-          // ignore persistence errors
+          console.log('error saving moment');
         }
       }
     }
@@ -357,9 +358,9 @@ const Seltabhomescrn = () => {
         <Text style={styles.slctcoreHomeHello}>Hello, {slctcoreNickname}</Text>
       </View>
 
-      <Pressable onPress={onSlctcoreOpenAbout}>
+      <Slctcorepressbtn onPress={onSlctcoreOpenAbout}>
         <Image source={require('../../elmnts/i/slctcorsyspabt.png')} />
-      </Pressable>
+      </Slctcorepressbtn>
     </View>
   );
 
@@ -369,14 +370,11 @@ const Seltabhomescrn = () => {
         source={require('../../elmnts/i/slctcorelayout.png')}
         style={styles.slctcoreHomeLoaderBg}>
         <View style={styles.slctcoreHomeLoaderWrap}>
-          <View
-            style={{
-              alignSelf: 'center',
-            }}>
+          <View style={styles.slctcoreHomeLoaderWebWrap}>
             <WebView
               originWhitelist={['*']}
               source={{html: slctcorehtmlLoader}}
-              style={{width: 260, height: 80, backgroundColor: 'transparent'}}
+              style={styles.slctcoreHomeLoaderWeb}
               scrollEnabled={false}
               transparent={true}
             />
@@ -401,7 +399,7 @@ const Seltabhomescrn = () => {
                 'Do something strange, but simple, for yourself, without explanation.'}
             </Text>
 
-            <Pressable
+            <Slctcorepressbtn
               style={styles.slctcoreHomeMomentStub}
               onPress={onSlctcoreAddMoment}>
               {slctcoreMoment?.uri ? (
@@ -417,15 +415,15 @@ const Seltabhomescrn = () => {
                   </Text>
                 </>
               )}
-            </Pressable>
+            </Slctcorepressbtn>
 
             {slctcoreMoment?.uri ? (
               <View style={styles.slctcoreHomeResultActionsRow}>
-                <Pressable
+                <Slctcorepressbtn
                   style={styles.slctcoreHomeResultHomeBtn}
                   onPress={onSlctcoreGoHome}>
                   <Text style={styles.slctcoreHomeResultHomeBtnText}>Home</Text>
-                </Pressable>
+                </Slctcorepressbtn>
                 <Pressable
                   style={styles.slctcoreHomeResultShareBtn}
                   onPress={onSlctcoreShareResult}>
@@ -435,11 +433,11 @@ const Seltabhomescrn = () => {
                 </Pressable>
               </View>
             ) : (
-              <Pressable
+              <Slctcorepressbtn
                 style={styles.slctcoreHomeSkipBtn}
                 onPress={onSlctcoreSkip}>
                 <Text style={styles.slctcoreHomeSkipBtnText}>SKIP</Text>
-              </Pressable>
+              </Slctcorepressbtn>
             )}
           </View>
         </View>
@@ -464,7 +462,7 @@ const Seltabhomescrn = () => {
                   option.id,
                 );
                 return (
-                  <Pressable
+                  <Slctcorepressbtn
                     key={option.id}
                     style={[
                       styles.slctcoreHomeOptionBtn,
@@ -480,19 +478,19 @@ const Seltabhomescrn = () => {
                       ]}>
                       {option.title}
                     </Text>
-                  </Pressable>
+                  </Slctcorepressbtn>
                 );
               })}
             </View>
 
             {slctcoreSelectedOptionIds.length === 3 && (
               <View style={styles.slctcoreHomeNextWrap}>
-                <Pressable
+                <Slctcorepressbtn
                   style={styles.slctcoreHomeNextBtn}
                   onPress={onSlctcoreToChooseSymbol}>
                   <Text style={styles.slctcoreHomeNextBtnText}>Next</Text>
                   <Image source={require('../../elmnts/i/slctcornxt.png')} />
-                </Pressable>
+                </Slctcorepressbtn>
               </View>
             )}
           </View>
@@ -543,13 +541,13 @@ const Seltabhomescrn = () => {
           </View>
         )}
 
-        <Pressable
+        <Slctcorepressbtn
           style={styles.slctcoreHomeMotivationBtn}
           onPress={onSlctcoreOpenMotivation}>
           <Text style={styles.slctcoreHomeMotivationBtnText}>
             DAILY MOTIVATION
           </Text>
-        </Pressable>
+        </Slctcorepressbtn>
       </View>
     </Slctcorelayoutt>
   );
@@ -568,6 +566,14 @@ const styles = StyleSheet.create({
   slctcoreHomeLoaderWrap: {
     alignItems: 'center',
     gap: 12,
+  },
+  slctcoreHomeLoaderWebWrap: {
+    alignSelf: 'center',
+  },
+  slctcoreHomeLoaderWeb: {
+    width: 260,
+    height: 80,
+    backgroundColor: 'transparent',
   },
   slctcoreHomeLoaderText: {
     color: '#FFFFFF',
@@ -816,8 +822,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   slctcoreHomeResultShareBtn: {
-    flex: 1,
     height: 60,
+    flex: 1,
+
     borderRadius: 20,
     backgroundColor: '#3AFFA0',
     justifyContent: 'center',

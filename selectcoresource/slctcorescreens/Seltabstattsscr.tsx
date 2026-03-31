@@ -1,8 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useCallback, useMemo, useState} from 'react';
-import {Image, Pressable, Share, StyleSheet, Text, View} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import Slctcorelayoutt from '../slctcorecmpnts/Slctcorelayoutt';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useCallback, useMemo, useState} from 'react';
+import {Image, Share, StyleSheet, Text, View} from 'react-native';
+import Slctcorepressbtn from '../slctcorecmpnts/Slctcorepressbtn';
 
 const SLCTCORE_STORAGE_KEYS = {
   moments: 'slctcore.moments',
@@ -252,11 +254,11 @@ Fishing: ${slctcoreComputed.counts.fishing}`;
           />
         </View>
 
-        <Pressable
+        <Slctcorepressbtn
           style={styles.slctcoreStatsShareBtn}
           onPress={onSlctcoreShareStats}>
           <Text style={styles.slctcoreStatsShareBtnText}>Share</Text>
-        </Pressable>
+        </Slctcorepressbtn>
       </View>
     </Slctcorelayoutt>
   );
